@@ -1,5 +1,5 @@
 {
-  "name": "gopay-js",
+  "name": "@makivlach/gopay-js",
   "version": "1.5.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,6 +9,9 @@
     "payment-gateway",
     "payments"
   ],
+  "publishConfig": {
+    "@bscrypto-team:registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/fronebdev/gopay-js.git"
@@ -40,7 +43,15 @@
     "start:dev": "tsnd .",
     "test": "tap tests/",
     "format": "prettier --write .",
-    "prepublish": "yarn format && yarn compile && yarn test"
+    "prepublish": "yarn format && yarn compile && yarn test",
+    "release:setup": "yarn config set version-git-tag true && yarn config set version-tag-prefix release-v",
+    "release:patch": "yarn release:setup && yarn version --patch",
+    "release:minor": "yarn release:setup && yarn version --minor",
+    "release:major": "yarn release:setup && yarn version --major",
+    "release:pre:major": "yarn release:setup && yarn version --premajor --preid pre",
+    "release:pre:minor": "yarn release:setup && yarn version --preminor --preid pre",
+    "release:pre:patch": "yarn release:setup && yarn version --prepatch --preid pre",
+    "release:pre:release": "yarn release:setup && yarn version --prerelease --preid pre"
   },
   "bugs": {
     "url": "https://github.com/fronebdev/gopay-js/issues"

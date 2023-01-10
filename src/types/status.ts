@@ -1,10 +1,10 @@
-import {payments} from "~/types/payments";
+import {Recurrence} from "~/types/payments";
 
 export type CurrencyCode = 'CZK' | 'EUR' | 'PLN' | 'USD' | 'GBP' | 'HUF' | 'RON' | 'BGN' | 'HRK';
 
 export type PaymentState = 'CREATED' | 'PAID' | 'CANCELED' | 'PAYMENT_METHOD_CHOSEN' | 'TIMEOUTED' | 'AUTHORIZED' | 'REFUNDED' | 'PARTIALLY_REFUNDED'
 export type PaymentInstrument = 'PAYMENT_CARD' | 'BANK_ACCOUNT' | 'GPAY' | 'APPLE_PAY' | 'GOPAY' | 'PAYPAL' | 'MPAYMENT' | 'PRSMS' | 'PAYSAFECARD' | 'BITCOIN' | 'CLICK_TO_PAY' ;
-export enum PaymentStatus {
+export enum PaymentSubstate {
     WAITING_FOR_ONLINE_PAYMENT = '_101',
     WAITING_FOR_OFFLINE_PAYMENT = '_102',
     BANK_PAYMENT_CONFIRMED_WITH_ADVICE = '_3001',
@@ -127,11 +127,11 @@ export type Preauthorization = {
 export type EetCode = "fik" | "bkp" | "pkp"
 
 
-export interface Status {
+export interface PaymentStatus {
     id: number;
-    order_number;
+    order_number: string;
     state: PaymentState;
-    sub_state: PaymentStatus;
+    sub_state: PaymentSubstate;
     amount: number;
     currency: CurrencyCode;
     payment_instrument: PaymentInstrument;
@@ -139,7 +139,7 @@ export interface Status {
     target: PayerTarget;
     additional_params: additionalParam[];
     lang: Language
-    recurrence: payments.Recurrence;
+    recurrence: Recurrence;
     preauthorization: Preauthorization;
     eet_code: EetCode;
     gw_url: string

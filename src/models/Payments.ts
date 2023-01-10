@@ -9,23 +9,18 @@
 import axios from "axios";
 import { GoPay } from "~/goPay";
 import { handleError } from "~/helpers";
-import { payments } from "~/types/payments";
-import {Status} from "~/types/status";
+import {PaymentStatus} from "~/types/status";
+import {ConstructorArgs, DefaultPayment, Recurrence} from "~/types/payments";
 
 export class Payments {
   private __sufix = "/payments/payment";
   private __client: GoPay;
 
-  constructor({ client }: payments.Constructor) {
+  constructor({ client }: ConstructorArgs) {
     this.__client = client;
   }
 
-  /**
-   *
-   * @param data
-   * @returns
-   */
-  async createPayment(data: payments.DefaultPayment) {
+  async createPayment(data: DefaultPayment) {
     const res = await axios({
       url: this.__client.url + this.__sufix,
       method: "POST",
@@ -78,12 +73,29 @@ export class Payments {
     }
   }
 
+  async getPaymentStatus(payment_id: number, token: string): Promise<PaymentStatus | null> {
+    const res = await axios({
+      url: this.__client.url + this.__sufix + "/" + payment_id,
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + (token),
+      },
+    });
+
+    if (res.status !== 200) {
+        if (this.__client.__log) handleError(res.data);
+
+        return null
+    }
+    return res.data as unknown as PaymentStatus;
+  }
+
   /**
    *
-   * @param payment_id
-   * @returns
+   * @deprecated
    */
-  async getStatus(payment_id: number): Promise<Status | null> {
+  async getStatus(payment_id: number, ): Promise<PaymentStatus | null> {
     const res = await axios({
       url: this.__client.url + this.__sufix + "/" + payment_id,
       method: "GET",
@@ -98,15 +110,9 @@ export class Payments {
 
         return null
     }
-    return res.data as unknown as Status;
+    return res.data as unknown as PaymentStatus;
   }
 
-  /**
-   *
-   * @param payment_id
-   * @param amount
-   * @returns
-   */
   async refundPayment(payment_id: number, amount: number) {
     const params = new URLSearchParams();
     params.append("amount", String(amount));
@@ -129,12 +135,7 @@ export class Payments {
     }
   }
 
-  /**
-   *
-   * @param data
-   * @returns
-   */
-  async createRecurrence(data: payments.Recurrence) {
+  async createRecurrence(data: Recurrence) {
     const res = await axios({
       url: this.__client.url + this.__sufix,
       method: "POST",

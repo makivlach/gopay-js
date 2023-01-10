@@ -8,6 +8,7 @@
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "isolatedModules": true,
     "strictFunctionTypes": true,
     "alwaysStrict": true,
     "noUnusedLocals": true,
@@ -16,6 +17,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
       "~/goPay": ["./src/factory/goPay"],
       "~/types/*": ["./src/types/*"],
@@ -23,5 +25,6 @@
       "~/helpers": ["./src/helpers"]
     }
   },
+  "include": ["./src",  "@types"],
   "exclude": ["node_modules", "dist", "tests", "test", "test-helpers"]
 }

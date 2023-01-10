@@ -8,16 +8,15 @@
 
 import axios from "axios";
 import { createToken, handleError, with_gopay } from "~/helpers";
-import {gopay} from "~/types/gopay";
-
+import {Constructor, Credentials, TokenScopeType, TokenType} from "~/types/gopay";
 
 
 export class GoPay {
   public url: string = "https://gate.gopay.cz/api";
-  public credentials: gopay.credentials;
+  public credentials: Credentials;
   public __log: boolean;
 
-  constructor({ credentials, enviroment, log }: gopay.Constructor) {
+  constructor({ credentials, enviroment, log }: Constructor) {
     this.__log = log;
     this.credentials = credentials;
 
@@ -29,7 +28,7 @@ export class GoPay {
   }
 
 
-  async getTokens(scope: gopay.TokenScopeType = 'payment-create'): Promise<null | gopay.TokenType>  {
+  async getTokens(scope: TokenScopeType = 'payment-create'): Promise<null | TokenType>  {
     const params = new URLSearchParams();
     params.append("grant_type", "client_credentials");
     params.append("scope", scope);

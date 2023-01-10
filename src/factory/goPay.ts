@@ -29,7 +29,7 @@ export class GoPay {
   }
 
 
-  async getTokens(scope: gopay.TokenScopeType = 'payment-create') {
+  async getTokens(scope: gopay.TokenScopeType = 'payment-create'): Promise<null | gopay.TokenType>  {
     const params = new URLSearchParams();
     params.append("grant_type", "client_credentials");
     params.append("scope", scope);
@@ -47,13 +47,19 @@ export class GoPay {
       data: params,
     });
 
-    if (res.status == 200) {
-      return res.data;
-    } else {
+    if (res.status !== 200) {
       if (this.__log) handleError(res.data);
+
+      return null
     }
+
+      return res.data;
   }
 
+  /*
+   * @deprecated
+   * Use getTokens instead
+   */
   async getAccessToken() {
     const params = new URLSearchParams();
     params.append("grant_type", "client_credentials");

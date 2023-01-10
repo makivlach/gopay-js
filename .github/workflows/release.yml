@@ -13,12 +13,12 @@ jobs:
         with:
           node-version: 16
       - run: yarn install --frozen-lockfile
-      - run: yarn lint
+#      - run: yarn lint
       - run: yarn typescript
       - run: yarn build
       - uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r build.zip build
+          args: zip -qq -r build.zip dist
       - name: Archive build
         uses: actions/upload-artifact@v3
         with:

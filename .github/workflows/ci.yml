@@ -20,7 +20,7 @@ jobs:
 #        run: yarn lint
 
       - name: tsc
-        run: yarn typescript
+        run: yarn compile
 
   # create-release:
   #   runs-on: ubuntu-18.04

@@ -25,6 +25,6 @@
       "~/helpers": ["./src/helpers"]
     }
   },
-  "include": ["./src",  "@types"],
+  "include": ["./src", "@types"],
   "exclude": ["node_modules", "dist", "tests", "test", "test-helpers"]
 }

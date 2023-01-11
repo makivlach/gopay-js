@@ -16,8 +16,8 @@ jobs:
       - name: install
         run: yarn install
 
-#      - name: linter
-#        run: yarn lint
+      #      - name: linter
+      #        run: yarn lint
 
       - name: tsc
         run: yarn build

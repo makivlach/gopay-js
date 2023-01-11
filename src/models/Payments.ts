@@ -9,8 +9,8 @@
 import axios from "axios";
 import { GoPay } from "~/goPay";
 import { handleError } from "~/helpers";
-import {PaymentStatus} from "~/types/status";
-import {ConstructorArgs, DefaultPayment, Recurrence} from "~/types/payments";
+import { PaymentStatus } from "~/types/status";
+import { ConstructorArgs, DefaultPayment, Recurrence } from "~/types/payments";
 
 export class Payments {
   private __sufix = "/payments/payment";
@@ -73,20 +73,23 @@ export class Payments {
     }
   }
 
-  async getPaymentStatus(payment_id: number, token: string): Promise<PaymentStatus | null> {
+  async getPaymentStatus(
+    payment_id: number,
+    token: string
+  ): Promise<PaymentStatus | null> {
     const res = await axios({
       url: this.__client.url + this.__sufix + "/" + payment_id,
       method: "GET",
       headers: {
         Accept: "application/json",
-        Authorization: "Bearer " + (token),
+        Authorization: "Bearer " + token,
       },
     });
 
     if (res.status !== 200) {
-        if (this.__client.__log) handleError(res.data);
+      if (this.__client.__log) handleError(res.data);
 
-        return null
+      return null;
     }
     return res.data as unknown as PaymentStatus;
   }
@@ -95,7 +98,7 @@ export class Payments {
    *
    * @deprecated
    */
-  async getStatus(payment_id: number, ): Promise<PaymentStatus | null> {
+  async getStatus(payment_id: number): Promise<PaymentStatus | null> {
     const res = await axios({
       url: this.__client.url + this.__sufix + "/" + payment_id,
       method: "GET",
@@ -106,9 +109,9 @@ export class Payments {
     });
 
     if (res.status !== 200) {
-        if (this.__client.__log) handleError(res.data);
+      if (this.__client.__log) handleError(res.data);
 
-        return null
+      return null;
     }
     return res.data as unknown as PaymentStatus;
   }

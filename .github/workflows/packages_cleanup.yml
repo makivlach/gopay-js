@@ -1,27 +1,27 @@
-name: 'Packages cleanup'
+name: "Packages cleanup"
 
 on:
   workflow_dispatch:
     inputs:
       packageName:
-        description: 'Name of the package'
-        default: 'template'
+        description: "Name of the package"
+        default: "template"
         required: true
         type: choice
         options:
-          - 'template'
+          - "template"
       packagesCount:
-        description: 'Number of oldest packages to delete'
+        description: "Number of oldest packages to delete"
         required: true
-        default: '5'
+        default: "5"
         type: choice
         options:
-          - '1'
-          - '5'
-          - '10'
-          - '15'
-          - '20'
-          - '30'
+          - "1"
+          - "5"
+          - "10"
+          - "15"
+          - "20"
+          - "30"
 
 jobs:
   delete-packages:

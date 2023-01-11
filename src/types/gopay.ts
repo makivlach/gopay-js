@@ -18,14 +18,12 @@ export type Credentials = {
   clientSecret: string;
 };
 
-
-
 export type TokenType = {
-  token_type: 'bearer'
-  access_token: string
+  token_type: "bearer";
+  access_token: string;
 
   // Is not being used
-  refresh_token: ''
-  expires_in: number
-}
-export type TokenScopeType = 'payment-create' | 'payment-all'
+  refresh_token: "";
+  expires_in: number;
+};
+export type TokenScopeType = "payment-create" | "payment-all";

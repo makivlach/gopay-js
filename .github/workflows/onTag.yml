@@ -4,7 +4,7 @@ on:
   #   types: [completed]
   push:
     tags:
-      - 'release-v*' # Push events to matching release-v*, i.e. release-v1.0, release-v20.15.10
+      - "release-v*" # Push events to matching release-v*, i.e. release-v1.0, release-v20.15.10
 
 name: Create Release
 

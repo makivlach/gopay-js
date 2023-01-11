@@ -1,28 +1,28 @@
-name: 'Packages cleanup - pre-release'
+name: "Packages cleanup - pre-release"
 
 on:
   workflow_dispatch:
     inputs:
       packageName:
-        description: 'Name of the package'
-        default: 'template'
+        description: "Name of the package"
+        default: "template"
         required: true
         type: choice
         options:
-          - 'template'
+          - "template"
       versionsToKeep:
-        description: 'Number of latest versions to keep'
+        description: "Number of latest versions to keep"
         required: true
-        default: '5'
+        default: "5"
         type: choice
         options:
-          - '0'
-          - '1'
-          - '5'
-          - '10'
-          - '15'
-          - '20'
-          - '30'
+          - "0"
+          - "1"
+          - "5"
+          - "10"
+          - "15"
+          - "20"
+          - "30"
 
 jobs:
   delete-packages:
@@ -32,4 +32,4 @@ jobs:
         with:
           package-name: ${{ inputs.packageName }}
           min-versions-to-keep: ${{ inputs.versionsToKeep }}
-          delete-only-pre-release-versions: 'true'
+          delete-only-pre-release-versions: "true"

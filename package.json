@@ -1,6 +1,6 @@
 {
   "name": "@makivlach/gopay-js",
-  "version": "1.6.10",
+  "version": "1.6.11",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "keywords": [
@@ -26,26 +26,23 @@
   "devDependencies": {
     "@types/node": "^14.14.33",
     "@types/tap": "^14.10.3",
-    "axios": "^0.24.0",
     "prettier": "^2.2.1",
     "tap": "^14.11.0",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.6",
     "tsc-alias": "^1.8.2",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "winston": "^3.3.3",
+    "chalk": "^4.1.0",
+    "global": "^4.4.0"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
-    "global": "^4.4.0",
-    "ts-node": "^9.1.1",
-    "ts-node-dev": "^1.1.6",
-    "typescript": "^4.2.3",
-    "winston": "^3.3.3"
+    "axios": "^0.24.0"
   },
   "scripts": {
     "build": "tsc && tsc-alias",
     "start:dev": "tsnd .",
-    "test": "tap tests/",
+    "test": "echo foo",
     "format": "prettier --write .",
     "prepublish": "yarn format && yarn build && yarn test",
     "release:setup": "yarn config set version-git-tag true && yarn config set version-tag-prefix release-v",

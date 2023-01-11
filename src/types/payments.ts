@@ -5,8 +5,7 @@
  * @author Froneb s.r.o. <hello@froneb.com>
  * @year 2022
  */
-import {GoPay} from "~/goPay";
-
+import { GoPay } from "~/goPay";
 
 export interface ConstructorArgs {
   client: GoPay;

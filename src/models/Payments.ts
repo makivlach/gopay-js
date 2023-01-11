@@ -97,6 +97,7 @@ export class Payments {
   /**
    *
    * @deprecated
+   * use getPaymentStatus instead
    */
   async getStatus(payment_id: number): Promise<PaymentStatus | null> {
     const res = await axios({
